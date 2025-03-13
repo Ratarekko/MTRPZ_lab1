@@ -7,7 +7,7 @@ def solve_quadratic(a, b, c):
         print("Error. coefficient a cannot be 0")
         sys.exit(1)
 
-    print(f"Equation is: {a}x^2 + {b}x + {c} = 0")
+    print(f"Equation is: ({a}) x^2 + ({b}) x + ({c}) = 0")
 
     discriminant = b**2 - 4*a*c
 
