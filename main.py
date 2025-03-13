@@ -1,4 +1,5 @@
 import sys
+import os
 import math
 
 def solve_quadratic(a, b, c):
@@ -36,5 +37,28 @@ def interactive_mode():
     c = get_float("c = ")
     solve_quadratic(a, b, c)
 
+def file_mode(filename):
+    try:
+        if not os.path.exists(filename):
+            raise FileNotFoundError(f"file {filename} does not exist")
+
+        with open(filename, 'r') as f:
+            parts = f.readline().strip().split()
+            if len(parts) != 3:
+                raise ValueError("invalid file format")
+
+            a, b, c = map(float, parts)
+            solve_quadratic(a, b, c)
+
+    except (FileNotFoundError, ValueError) as e:
+        print(e)
+        sys.exit(1)
+
 if __name__ == "__main__":
-    interactive_mode()
+    if len(sys.argv) == 1:
+        interactive_mode()
+    elif len(sys.argv) == 2:
+        file_mode(sys.argv[1])
+    else:
+        print("Usage: python equation.py [filename]")
+        sys.exit(1)
