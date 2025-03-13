@@ -22,3 +22,19 @@ def solve_quadratic(a, b, c):
         print(f"x1 = {x}")
     else:
         print("There are 0 roots")
+
+def interactive_mode():
+    def get_float(prompt):
+        while True:
+            try:
+                return float(input(prompt))
+            except ValueError as e:
+                print(f"Error. Expected a valid real number, got {str(e).split(':')[-1].strip()} instead")
+
+    a = get_float("a = ")
+    b = get_float("b = ")
+    c = get_float("c = ")
+    solve_quadratic(a, b, c)
+
+if __name__ == "__main__":
+    interactive_mode()
